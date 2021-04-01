@@ -55,4 +55,4 @@ namespace Some.Long.Namespace
 }
 ```
 
-- **Rescursive** - Looks for scripts by searching through all "Resource Script Directories". When using this method, you cannot have multiple resources that have the same class name.
+- **Recursive** - Looks for scripts by searching through all "Resource Script Directories". When using this method, you cannot have multiple resources that have the same class name.
