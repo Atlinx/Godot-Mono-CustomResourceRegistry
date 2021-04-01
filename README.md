@@ -1,6 +1,6 @@
 # Godot Mono CustomResourceRegister Plugin
 
-This is a Godot C# plugin that registers custom C# resources (including custom nodes) for Godot. This plugin works as a workaround for this Godot engine [issue](https://github.com/godotengine/godot/issues/27470).
+This is a Godot C# plugin that registers custom C# resources and custom nodes for Godot. This plugin works as a workaround for this Godot engine [issue](https://github.com/godotengine/godot/issues/27470).
 
 Originally made by [wmigor](https://github.com/wmigor/godot-mono-custom-resource-register)
 
@@ -14,13 +14,13 @@ Modified by [Atlinx](https://github.com/Atlinx)
 
 ## How to Use 
 
-To add custom C# resources:
-1. Create a C# class in a new file that extends `Godot.Resource`. This class's name must be the same as the name of the file that stores this class.
+To add a custom C# resource:
+1. Create a C# class in a new file that extends `Godot.Resource`. The file that stores this class must have the same name as this class.
 2. Rebuild the solution
 3. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
 
 To add a custom C# node:
-1. Create a C# class in a new file that implements `ICustomNode`. This class's name must be the same as the name of the file that stores this class.
+1. Create a C# class in a new file that implements `ICustomNode`. The file that stores this class must have the same name as this class.
 2. Rebuild the solution
 3. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
 
