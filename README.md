@@ -15,12 +15,12 @@ Modified by [Atlinx](https://github.com/Atlinx)
 ## How to Use 
 
 To add custom C# resources:
-1. Create a C# class in a new file that extends `Godot.Resource`. This class' name must be the same as the name of the file that stores this class.
+1. Create a C# class in a new file that extends `Godot.Resource`. This class's name must be the same as the name of the file that stores this class.
 2. Rebuild the solution
 3. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
 
 To add a custom C# node:
-1. Create a C# class in a new file that implements `ICustomNode`. This class' name must be the same as the name of the file that stores this class.
+1. Create a C# class in a new file that implements `ICustomNode`. This class's name must be the same as the name of the file that stores this class.
 2. Rebuild the solution
 3. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
 
@@ -28,6 +28,8 @@ To delete custom C# resources/nodes:
 1. Delete the C# resource/node script
 2. Rebuild the solution
 3. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
+
+Anytime the Plugin registers/unregisters a resource/node, the plugin will print its actions into the **Output** window.
 
 ## Settings
 
