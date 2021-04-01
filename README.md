@@ -44,7 +44,7 @@ All settings are listed below:
 
 **Search Type** - The method used to gather custom C# resource scripts.
 
-- **NameSpace** - Looks for scripts by using their namespace as a directory.
+- **Namespace** - Looks for scripts by using their namespace as a directory.
 For example with the C# script below, the plugin will look under each resource script directory for the script by using the path "./Some/Long/Namespace/Something.cs"
 ```C#
 namespace Some.Long.Namespace
