@@ -19,9 +19,9 @@ Modified by [Atlinx](https://github.com/Atlinx)
 ### Adding/Removing Custom C# Resouces/Nodes
 
 To add a custom C# resource:
-1. Create a C# class in a new file that extends `Godot.Resource`. The file that stores this class must have the same name as this class.
-2. Rebuild the solution
-3. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
+1. Create a C# class in a new file that extends `Godot.Resource`. This class must have a parameterless constructor. The file that stores this class must have the same name as this class.
+3. Rebuild the solution
+4. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
 
 To add a custom C# node:
 1. Create a C# class in a new file that implements `ICustomNode`. The file that stores this class must have the same name as this class.
