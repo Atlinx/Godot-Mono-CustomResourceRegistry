@@ -49,7 +49,7 @@ Therefore after adding your custom C# resource to the Plugin's registry you must
 
 ### Limitations to Saving/Loading
 
-Since this Plugin builds saves off of templates you **CANNOT** save custom resouce types that contain a collection of custom reouce types (Such as arrays like CustomResource[], or collections like List<CustomResource>).
+Since this Plugin builds saves off of templates you **CANNOT** save custom resouce types that contain a collection of custom reouce types (Such as arrays like `CustomResource[]`, or collections like `List<CustomResource>`).
 
 ## Settings
 
