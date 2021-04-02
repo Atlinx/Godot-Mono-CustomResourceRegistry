@@ -28,7 +28,7 @@ config/icon="res://Testing/icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "CustomResourceRegister", "CustomResourceRegistry" )
+enabled=PoolStringArray( "CustomResourceRegistry" )
 
 [rendering]
 

@@ -4,6 +4,7 @@ using System;
 public class AlphaResource : Resource
 {
     public AlphaResource() {}
+
     public AlphaResource(int integerField, string textField, BetaResource betaSubResource)
     {
         IntegerField = integerField;
@@ -20,6 +21,6 @@ public class AlphaResource : Resource
 
     public override string ToString()
     {
-        return $"Alpha: {IntegerField} {TextField} {BetaSubResource}";
+        return $"Alpha: [{IntegerField} {TextField} {BetaSubResource}]";
     }
 }

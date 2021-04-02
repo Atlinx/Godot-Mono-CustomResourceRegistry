@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-TextField = "Beta Instance"
-FloatArrayField = PoolRealArray( 0.4, 0.5 )
 TextField2 = "Alpha Overwrite Beta!!"
+FloatArrayField = PoolRealArray( 0.4, 0.5 )
 FloatField = 34.3
+TextField = "Beta Instance"

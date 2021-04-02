@@ -8,36 +8,8 @@ public static class MonoCustomResourceIO
 {
     public static T Load<T>(string resourcePath) where T : Resource, new()
     {
-        var resource = ResourceLoader.Load(resourcePath);
-        List<string> props = GetCustomResourceProperties(resource);
-        var model = new T();
-        foreach (var prop in props)
-        {
-            var propInfo = typeof(T).GetProperty(prop);
-            if (propInfo.PropertyType.Assembly == Assembly.GetExecutingAssembly())
-            {
-                if (propInfo.PropertyType.IsArray && propInfo.PropertyType.GetElementType().IsSubclassOf(typeof(Resource)))
-                {
-                    throw new Exception("Resource cannot contain a Resource array! Resource arrays are not implemented in saving/loading");
-                } else if (propInfo.PropertyType.IsSubclassOf(typeof(Resource)))
-                {
-                    var inner = (Resource)resource.Get(prop);
-                    var loadMethod = typeof(MonoCustomResourceIO).GetTypeInfo().GetDeclaredMethod("Load");
-                    var loadInstance = loadMethod.MakeGenericMethod(propInfo.PropertyType);
-                    var innerResource = ResourceLoader.Load(inner.ResourcePath);
-                    propInfo.SetValue(model, loadInstance.Invoke(null, new object[] { innerResource.ResourcePath }));
-                } else
-                {
-                    throw new Exception("Resource cannot contain a non-Resource class!");
-                }
-            }
-            else
-                propInfo.SetValue(model, resource.Get(prop));
-        }
-
-        // Godot Engine freaks out when model.ResourcePath is assigned so our custom Resources so we don't assign it.
-        //model.ResourcePath = resource.ResourcePath;
-        return model;
+        // Godot supports C# resouce loading. Yay!
+        return ResourceLoader.Load<T>(resourcePath);
     }
 
     public static void Save(string path, Resource resource)
@@ -68,7 +40,7 @@ public static class MonoCustomResourceIO
             {
                 if (propInfo.PropertyType.IsArray && propInfo.PropertyType.GetElementType().IsSubclassOf(typeof(Resource)))
                 {
-                    throw new Exception("Resource cannot contain a Resource array! Resource arrays are not implemented in saving/loading");
+                    throw new Exception("Resource cannot contain a Resource array! Resource arrays are not implemented in saving.");
                 } else if (propInfo.PropertyType.IsSubclassOf(typeof(Resource)))
                 {
                     SaveNewHelper((Resource) newInstance.Get(prop), (Resource) propInfo.GetValue(resourceBluePrint), propInfo.PropertyType);
@@ -95,7 +67,7 @@ public static class MonoCustomResourceIO
             {
                 if (propInfo.PropertyType.IsArray && propInfo.PropertyType.GetElementType().IsSubclassOf(typeof(Resource)))
                 {
-                    throw new Exception("Resource cannot contain a Resource array! Resource arrays are not implemented in saving/loading");
+                    throw new Exception("Resource cannot contain a Resource array! Resource arrays are not implemented in saving.");
                 } else if (propInfo.PropertyType.IsSubclassOf(typeof(Resource)))
                 {
                     var saveMethod = typeof(MonoCustomResourceIO).GetTypeInfo().GetDeclaredMethod("SaveExisting");

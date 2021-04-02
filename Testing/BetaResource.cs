@@ -24,6 +24,6 @@ public class BetaResource : Resource
 
     public override string ToString()
     {
-        return $"Beta: {String.Join(", ", FloatArrayField)} {TextField} {TextField2}";
+        return $"Beta: [{String.Join(", ", FloatArrayField)} {FloatField} {TextField} {TextField2}]";
     }
 }
