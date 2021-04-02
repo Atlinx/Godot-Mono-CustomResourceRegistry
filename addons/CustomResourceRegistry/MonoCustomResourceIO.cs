@@ -23,6 +23,8 @@ public static class MonoCustomResourceIO
     public static void SaveNew(string path, Resource resource)
     {
         var prototypePath = FindPrototypePathRecursive(resource.GetType());
+        if (prototypePath == null)
+            throw new Exception($"Could not find prototype for resource: {resource.GetType()}.");
         var prototype = ResourceLoader.Load(prototypePath);
         ResourceSaver.Save(path, prototype);
         
