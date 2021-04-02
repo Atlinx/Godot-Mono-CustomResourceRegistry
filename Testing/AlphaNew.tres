@@ -1,17 +1,17 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://BetaResource.cs" type="Script" id=1]
-[ext_resource path="res://AlphaResource.cs" type="Script" id=2]
+[ext_resource path="res://Testing/BetaResource.cs" type="Script" id=1]
+[ext_resource path="res://Testing/AlphaResource.cs" type="Script" id=2]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
-FloatArrayField = PoolRealArray( 0.4, 0.5 )
-FloatField = 34.3
-TextField = "asdfasdfasfasdfasd"
-TextField2 = "Field 2"
+TextField = ""
+FloatArrayField = PoolRealArray(  )
+TextField2 = ""
+FloatField = 0.0
 
 [resource]
 script = ExtResource( 2 )
-IntegerField = 13
-TextField = "Alpha Inst"
+TextField = ""
 BetaSubResource = SubResource( 1 )
+IntegerField = 0

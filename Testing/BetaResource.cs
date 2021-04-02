@@ -4,10 +4,13 @@ using System;
 public class BetaResource : Resource
 {
     public BetaResource() {}
-    public BetaResource(float floatField, string textField)
+
+    public BetaResource(float[] floatArrayField, float floatField, string textField, string textField2)
     {
+        FloatArrayField = floatArrayField;
         FloatField = floatField;
         TextField = textField;
+        TextField2 = textField2;
     }
 
     [Export]
@@ -18,4 +21,9 @@ public class BetaResource : Resource
     public string TextField { get; set; } = "";
     [Export]
     public string TextField2 { get; set; } = "";
+
+    public override string ToString()
+    {
+        return $"Beta: {String.Join(", ", FloatArrayField)} {TextField} {TextField2}";
+    }
 }

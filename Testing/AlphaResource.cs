@@ -17,4 +17,9 @@ public class AlphaResource : Resource
     public string TextField { get; set; } = "";
     [Export]
     public BetaResource BetaSubResource { get; set; }
+
+    public override string ToString()
+    {
+        return $"Alpha: {IntegerField} {TextField} {BetaSubResource}";
+    }
 }

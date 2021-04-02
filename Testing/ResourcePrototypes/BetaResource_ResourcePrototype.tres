@@ -2,7 +2,6 @@
 
 [ext_resource path="res://Testing/BetaResource.cs" type="Script" id=1]
 
-
 [resource]
 script = ExtResource( 1 )
 FloatArrayField = PoolRealArray(  )

@@ -19,6 +19,7 @@ namespace MonoCustomResourceRegistry
 
 		public override void _EnterTree()
 		{
+			UnregisterCustomClasses();
 			Settings.Init();
 			RegisterCustomClasses();
 			control = CreateBottomMenuControl();
@@ -48,7 +49,7 @@ namespace MonoCustomResourceRegistry
 					continue;
 				AddCustomType($"{Settings.ClassPrefix}{type.Name}", nameof(Resource), script, null);
 				GD.Print($"Register custom resource: {type.Name} -> {path}");
-				customTypes.Add(type.Name);
+				customTypes.Add($"{Settings.ClassPrefix}{type.Name}");
 			}
 
 			foreach (var type in GetCustomNodes())
@@ -63,7 +64,7 @@ namespace MonoCustomResourceRegistry
 					continue;
 				AddCustomType($"{Settings.ClassPrefix}{type.Name}", nameof(Node), script, null);
 				GD.Print($"Register custom node: {type.Name} -> {path}");
-				customTypes.Add(type.Name);
+				customTypes.Add($"{Settings.ClassPrefix}{type.Name}");
 			}
 		}
 

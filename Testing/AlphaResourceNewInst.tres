@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://AlphaResource.cs" type="Script" id=2]
+[ext_resource path="res://Testing/AlphaResource.cs" type="Script" id=2]
 
 [resource]
 script = ExtResource( 2 )

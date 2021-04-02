@@ -16,11 +16,20 @@ public static class MonoCustomResourceIO
             var propInfo = typeof(T).GetProperty(prop);
             if (propInfo.PropertyType.Assembly == Assembly.GetExecutingAssembly())
             {
-                var inner = (Resource)resource.Get(prop);
-                var loadMethod = typeof(MonoCustomResourceIO).GetTypeInfo().GetDeclaredMethod("Load");
-                var loadInstance = loadMethod.MakeGenericMethod(propInfo.PropertyType);
-                var innerResource = ResourceLoader.Load(inner.ResourcePath);
-                propInfo.SetValue(model, loadInstance.Invoke(null, new object[] { innerResource.ResourcePath }));
+                if (propInfo.PropertyType.IsArray && propInfo.PropertyType.GetElementType().IsSubclassOf(typeof(Resource)))
+                {
+                    throw new Exception("Resource cannot contain a Resource array! Resource arrays are not implemented in saving/loading");
+                } else if (propInfo.PropertyType.IsSubclassOf(typeof(Resource)))
+                {
+                    var inner = (Resource)resource.Get(prop);
+                    var loadMethod = typeof(MonoCustomResourceIO).GetTypeInfo().GetDeclaredMethod("Load");
+                    var loadInstance = loadMethod.MakeGenericMethod(propInfo.PropertyType);
+                    var innerResource = ResourceLoader.Load(inner.ResourcePath);
+                    propInfo.SetValue(model, loadInstance.Invoke(null, new object[] { innerResource.ResourcePath }));
+                } else
+                {
+                    throw new Exception("Resource cannot contain a non-Resource class!");
+                }
             }
             else
                 propInfo.SetValue(model, resource.Get(prop));
@@ -57,7 +66,16 @@ public static class MonoCustomResourceIO
             var propInfo = resourceBluePrint.GetType().GetProperty(prop);
             if (propInfo.PropertyType.Assembly == Assembly.GetExecutingAssembly())
             {
-                SaveNewHelper((Resource) newInstance.Get(prop), (Resource) propInfo.GetValue(resourceBluePrint), propInfo.PropertyType);
+                if (propInfo.PropertyType.IsArray && propInfo.PropertyType.GetElementType().IsSubclassOf(typeof(Resource)))
+                {
+                    throw new Exception("Resource cannot contain a Resource array! Resource arrays are not implemented in saving/loading");
+                } else if (propInfo.PropertyType.IsSubclassOf(typeof(Resource)))
+                {
+                    SaveNewHelper((Resource) newInstance.Get(prop), (Resource) propInfo.GetValue(resourceBluePrint), propInfo.PropertyType);
+                } else
+                {
+                    throw new Exception("Resource cannot contain a non-Resource class!");
+                }
             }
             else newInstance.Set(prop, propInfo.GetValue(resourceBluePrint));
         }
@@ -66,10 +84,8 @@ public static class MonoCustomResourceIO
     public static void SaveExisting(string path, Resource resource)
     {
         if (!ResourceLoader.Exists(path))
-        {
-            GD.PrintErr($"Resource at {path} does not exist!");
-            return;
-        }
+            throw new Exception($"Resource at {path} does not exist!");
+        
         var diskResource = ResourceLoader.Load(path);
         var props = GetCustomResourceProperties(diskResource);
         foreach (var prop in props)
@@ -77,8 +93,17 @@ public static class MonoCustomResourceIO
             var propInfo = resource.GetType().GetProperty(prop);
             if (propInfo.PropertyType.Assembly == Assembly.GetExecutingAssembly())
             {
-                var saveMethod = typeof(MonoCustomResourceIO).GetTypeInfo().GetDeclaredMethod("SaveExisting");
-                saveMethod.Invoke(null, new object[] { ((Resource) propInfo.GetValue(diskResource)).ResourcePath, propInfo.GetValue(resource) });
+                if (propInfo.PropertyType.IsArray && propInfo.PropertyType.GetElementType().IsSubclassOf(typeof(Resource)))
+                {
+                    throw new Exception("Resource cannot contain a Resource array! Resource arrays are not implemented in saving/loading");
+                } else if (propInfo.PropertyType.IsSubclassOf(typeof(Resource)))
+                {
+                    var saveMethod = typeof(MonoCustomResourceIO).GetTypeInfo().GetDeclaredMethod("SaveExisting");
+                    saveMethod.Invoke(null, new object[] { ((Resource) propInfo.GetValue(diskResource)).ResourcePath, propInfo.GetValue(resource) });
+                } else
+                {
+                    throw new Exception("Resource cannot contain a non-Resource class!");
+                }
             }
             else diskResource.Set(prop, propInfo.GetValue(resource));
         }
