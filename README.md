@@ -69,7 +69,7 @@ All settings are listed below:
 
 **Resource Script Directories** - The paths to the directories where you want to scan for C# resource scripts to register as custom resources. By default, it only contains "res://". 
 
-**Resource Prototype Directories** - The paths to the directories where you want to scan for the "template" resource files.
+**Resource Prototype Directories** - The paths to the directories where you want to scan for the prototype resource files, which serve as templates for the Plugin to build new resources off of.
 
 **Search Type** - The method used to gather custom C# resource scripts.
 
