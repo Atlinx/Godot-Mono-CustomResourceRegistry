@@ -2,7 +2,9 @@
 
 This is a Godot C# plugin that registers custom C# resources and custom nodes for Godot. This plugin works as a workaround for this Godot engine [issue](https://github.com/godotengine/godot/issues/27470).
 
-Originally made by [wmigor](https://github.com/wmigor/godot-mono-custom-resource-register)
+Based off of CustomResourceRegister made by [wmigor](https://github.com/wmigor/godot-mono-custom-resource-register)
+
+Reflection saving and loading originally written by [rob-mur](https://github.com/rob-mur)
 
 Modified by [Atlinx](https://github.com/Atlinx)
 
