@@ -38,14 +38,14 @@ Anytime the Plugin registers/unregisters a resource/node, the plugin will print 
 ### Saving/Loading Custom C# Resources at Runtime
 
 You can use the `MonoCustomResourceIO` class to save and load custom Resources using your script. This class features 3 static methods, which are
-- Load<T>() - Loads a custom resource of type "T".
-- Save(string path, Resource resource) - If the "path" already has a resource, it will run SaveExisting(). Otherwise, it will run SaveNew().
-- SaveNew(string path, Resource resource) - Saves a new "resource" at a given "path".
-- SaveExisting(string path, Resource resource) - Saves a "resource" into an existing resoruce at a given "path".
+- `Load<T>()` - Loads a custom resource of type `T`.
+- `Save(string path, Resource resource)` - If the `path` already has a resource, it will run `SaveExisting()`. Otherwise, it will run `SaveNew()`.
+- `SaveNew(string path, Resource resource)` - Saves a new `resource` at a given `path`.
+- `SaveExisting(string path, Resource resource)` - Saves a `resource` into an existing resoruce at a given `path`.
 
 Since the Godot Engine's ResourceSaver.Save() functionality is currently broken (as of v3.2.3), this plugin uses an alternative method of saving. This method involves setting up empty resource files that will serve as "prototypes" or "templates" for the plugin to build a new custom resource class off of.
 
-Therefore after adding your custom C# resource to the Plugin's registry you must create a new resouce of that type using **RMB > New Resource** in the **FileSystem** window and this resource must be named "CustomResourceClassName\_ResourcePrototype", where "CustomResourceClassName" should be replaced with the exact name of your class (excluding namespaces). This resource must also be placed underneath a directory that is a part of **Resource Prototype Directories** in order to let the plugin scan and obtain this template.
+Therefore after adding your custom C# resource to the Plugin's registry you must create a new resouce of that type using **RMB > New Resource** in the **FileSystem** window and this resource must be named `CustomResourceClassName\_ResourcePrototype`, where `CustomResourceClassName` should be replaced with the exact name of your class (excluding namespaces). This resource must also be placed underneath a directory that is a part of **Resource Prototype Directories** in order to let the plugin scan and obtain this template.
 
 ### Limitations to Saving/Loading
 
