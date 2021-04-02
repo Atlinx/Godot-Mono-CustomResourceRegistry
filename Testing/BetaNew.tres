@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://BetaResource.cs" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+FloatArrayField = PoolRealArray(  )
+FloatField = 10.0
+TextField = "ewrwer"
+TextField2 = "qwe"

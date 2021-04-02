@@ -3,7 +3,7 @@ using Godot.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace CustomResourceRegister
+namespace MonoCustomResourceRegistry
 {
 	public static class Settings
 	{
@@ -13,9 +13,10 @@ namespace CustomResourceRegister
 			Namespace = 1,
 		}
 
+		public static string ClassPrefix => GetSettings(nameof(ClassPrefix)).ToString();
 		public static ResourceSearchType SearchType => (ResourceSearchType) GetSettings(nameof(SearchType));
 		public static ReadOnlyCollection<string> ResourceScriptDirectories => new ReadOnlyCollection<string>(((Array) GetSettings(nameof(ResourceScriptDirectories))).Cast<string>().ToList());
-		public static string ClassPrefix => GetSettings(nameof(ClassPrefix)).ToString();
+		public static ReadOnlyCollection<string> ResourcePrototypeDirectories => new ReadOnlyCollection<string>(((Array) GetSettings(nameof(ResourcePrototypeDirectories))).Cast<string>().ToList());
 
 		public static void Init()
 		{
@@ -24,11 +25,13 @@ namespace CustomResourceRegister
 			AddSetting(nameof(SearchType), Variant.Type.Int, ResourceSearchType.Recursive, PropertyHint.Enum, "Recursive,Namespace");
 
 			AddSetting(nameof(ResourceScriptDirectories), Variant.Type.StringArray, new  Array<string> (new string[]{ "res://"}));
+
+			AddSetting(nameof(ResourcePrototypeDirectories), Variant.Type.StringArray, new  Array<string> (new string[]{ "res://ResourcePrototypes"}));
 		}
 
 		private static object GetSettings(string title)
 		{
-			return ProjectSettings.GetSetting($"{nameof(CustomResourceRegister)}/{title}");
+			return ProjectSettings.GetSetting($"{nameof(MonoCustomResourceRegistry)}/{title}");
 		}
 
 		private static void AddSetting(string title, Variant.Type type, object value, PropertyHint hint = PropertyHint.None, string hintString = "")
@@ -47,6 +50,6 @@ namespace CustomResourceRegister
 			ProjectSettings.AddPropertyInfo(info);
 		}
 
-		private static string SettingPath(string title) => $"{nameof(CustomResourceRegister)}/{title}";
+		private static string SettingPath(string title) => $"{nameof(MonoCustomResourceRegistry)}/{title}";
 	}
 }

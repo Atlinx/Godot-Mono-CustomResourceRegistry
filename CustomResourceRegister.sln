@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomResourceRegister", "CustomResourceRegister.csproj", "{457244EE-0F84-4519-8FA9-C18C5A40F99F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{457244EE-0F84-4519-8FA9-C18C5A40F99F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{457244EE-0F84-4519-8FA9-C18C5A40F99F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{457244EE-0F84-4519-8FA9-C18C5A40F99F}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{457244EE-0F84-4519-8FA9-C18C5A40F99F}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{457244EE-0F84-4519-8FA9-C18C5A40F99F}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{457244EE-0F84-4519-8FA9-C18C5A40F99F}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

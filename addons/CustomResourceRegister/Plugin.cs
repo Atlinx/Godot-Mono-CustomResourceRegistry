@@ -7,34 +7,34 @@ using Godot;
 // Originally written by wmigor
 // Edited by Atlinx to recursively search for files.
 // wmigor's Public Repo: https://github.com/wmigor/godot-mono-custom-resource-register
-namespace CustomResourceRegister
+namespace MonoCustomResourceRegistry
 {
-	public interface ICustomNode {}
+	public interface ICustomNodeType {}
 
 	[Tool]
 	public class Plugin : EditorPlugin
 	{
-		private readonly List<string> _scripts = new List<string>();
-		private Control _control;
+		private readonly List<string> customTypes = new List<string>();
+		private Control control;
 
 		public override void _EnterTree()
 		{
 			Settings.Init();
 			RegisterCustomClasses();
-			_control = CreateBottomMenuControl();
-			AddControlToBottomPanel(_control, "CRR");
+			control = CreateBottomMenuControl();
+			AddControlToBottomPanel(control, "CRR");
 		}
 
 		public override void _ExitTree()
 		{
 			UnregisterCustomClasses();
-			RemoveControlFromBottomPanel(_control);
-			_control = null;
+			RemoveControlFromBottomPanel(control);
+			control = null;
 		}
 
 		private void RegisterCustomClasses()
 		{
-			_scripts.Clear();
+			customTypes.Clear();
 
 			var file = new File();
 
@@ -48,7 +48,7 @@ namespace CustomResourceRegister
 					continue;
 				AddCustomType($"{Settings.ClassPrefix}{type.Name}", nameof(Resource), script, null);
 				GD.Print($"Register custom resource: {type.Name} -> {path}");
-				_scripts.Add(type.Name);
+				customTypes.Add(type.Name);
 			}
 
 			foreach (var type in GetCustomNodes())
@@ -56,7 +56,6 @@ namespace CustomResourceRegister
 				var path = FindClassPath(type);
 				if (path == null)
 					continue;
-
 				if (!file.FileExists(path))
 					continue;
 				var script = GD.Load<Script>(path);
@@ -64,7 +63,7 @@ namespace CustomResourceRegister
 					continue;
 				AddCustomType($"{Settings.ClassPrefix}{type.Name}", nameof(Node), script, null);
 				GD.Print($"Register custom node: {type.Name} -> {path}");
-				_scripts.Add(type.Name);
+				customTypes.Add(type.Name);
 			}
 		}
 
@@ -74,10 +73,8 @@ namespace CustomResourceRegister
 			{
 				case Settings.ResourceSearchType.Recursive:
 					return FindClassPathRecursive(type);
-					break;
 				case Settings.ResourceSearchType.Namespace:
 					return FindClassPathNamespace(type);
-					break;
 				default:
 					throw new Exception($"ResourceSearchType {Settings.SearchType} not implemented!");
 			}
@@ -99,14 +96,14 @@ namespace CustomResourceRegister
 		{
 			foreach (string directory in Settings.ResourceScriptDirectories)
 			{
-				string fileFound = FindClassPathHelper(type, directory);
+				string fileFound = FindClassPathRecursiveHelper(type, directory);
 				if (fileFound != null)
 					return fileFound;
 			}
 			return null;
 		}
 
-		private static string FindClassPathHelper(Type type, string directory)
+		private static string FindClassPathRecursiveHelper(Type type, string directory)
 		{
 			Directory dir = new Directory();
 
@@ -125,7 +122,7 @@ namespace CustomResourceRegister
 						continue;
 					else if (dir.CurrentIsDir())
 					{
-						string foundFilePath = FindClassPathHelper(type, dir.GetCurrentDir() + "/" + fileOrDirName);
+						string foundFilePath = FindClassPathRecursiveHelper(type, dir.GetCurrentDir() + "/" + fileOrDirName);
 						if (foundFilePath != null)
 						{
 							dir.ListDirEnd();
@@ -149,28 +146,30 @@ namespace CustomResourceRegister
 		{
 			var assembly = Assembly.GetAssembly(typeof(Plugin));
 			return assembly.GetTypes().Where(t =>
-				!t.IsAbstract && typeof(ICustomNode).IsAssignableFrom(t) && t.IsSubclassOf(typeof(Node)));
+				!t.IsAbstract && typeof(ICustomNodeType).IsAssignableFrom(t) && t.IsSubclassOf(typeof(Node)));
 		}
 
 		private void UnregisterCustomClasses()
 		{
-			foreach (var script in _scripts)
+			foreach (var script in customTypes)
 			{
 				RemoveCustomType(script);
 				GD.Print($"Unregister custom resource: {script}");
 			}
 
-			_scripts.Clear();
+			customTypes.Clear();
 		}
 
 		private Control CreateBottomMenuControl()
 		{
 			var container = new Container();
-			container.RectMinSize = new Vector2(0, 150);
+			container.RectMinSize = new Vector2(0, 50);
+			
 			var button = new Button {Text = "Refresh"};
 			button.Connect("pressed", this, nameof(OnRefreshPressed));
 			container.AddChild(button);
 			button.SetAnchorsAndMarginsPreset(Control.LayoutPreset.Wide);
+
 			return container;
 		}
 

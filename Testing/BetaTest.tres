@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://BetaResource.cs" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+FloatArrayField = PoolRealArray( 1, 123, 50 )
+FloatField = 0.0
+TextField = "B"
+TextField2 = "Alpha Overwrite Beta!!"
