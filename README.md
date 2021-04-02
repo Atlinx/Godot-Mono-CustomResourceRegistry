@@ -1,6 +1,6 @@
 # Godot Mono Custom Resource Registry Plugin
 
-This is a Godot C# plugin that registers custom C# resources and custom nodes for Godot. This plugin serves as a workaround for this Godot engine [issue](https://github.com/godotengine/godot/issues/27470).
+This is a Godot C# plugin that registers custom C# resources and custom nodes for Godot. This plugin serves as a workaround for the Godot engine's [C# resource missing in context menu issue](https://github.com/godotengine/godot/issues/27470) and [C# resource saving issue](https://github.com/godotengine/godot/issues/38191).
 
 Based off of *CustomResourceRegisterPlugin* made by [wmigor](https://github.com/wmigor/godot-mono-custom-resource-register)
 
@@ -45,11 +45,18 @@ You can use the `MonoCustomResourceIO` class to save and load custom Resources u
 
 Since the Godot Engine's ResourceSaver.Save() functionality is currently broken (as of v3.2.3), this plugin uses an alternative method of saving. This method involves setting up empty resource files that will serve as "prototypes" or "templates" for the plugin to build a new custom resource class off of.
 
-Therefore after adding your custom C# resource to the Plugin's registry you must create a new resouce of that type using **RMB > New Resource** in the **FileSystem** window and this resource must be named `CustomResourceClassName\_ResourcePrototype`, where `CustomResourceClassName` should be replaced with the exact name of your class (excluding namespaces). This resource must also be placed underneath a directory that is a part of **Resource Prototype Directories** in order to let the plugin scan and obtain this template.
+#### Prototype Resources
+Therefore after adding your custom C# resource to the Plugin's registry you must create a new resouce of that type using **RMB > New Resource** in the **FileSystem** window and this resource must be named `CustomResourceClassName\_ResourcePrototype`, where `CustomResourceClassName` should be replaced with the exact name of your class (excluding namespaces). This resource will serve as a prototype resource for the plugin to build new resources of the same type off of. 
+
+This prototype resource must also be placed underneath a directory that is a part of **Resource Prototype Directories** in order to let the plugin scan and obtain this prototype. 
+
+For each exported variable in a prototype resource that is a custom resource type, make sure to assign a new instance of that type to the variable and make sure this new instance is stored witin the prototype resource. This creation of a built-in instance can be done by opening the prototype resource file, going to the **Inspector** window, clicking on the `(empty)` slot next to the custom resource type variable, and finally clicking `New YourCustomResourceName`.
 
 ### Limitations to Saving/Loading
 
 Since this Plugin builds saves off of templates you **CANNOT** save custom resouce types that contain a collection of custom reouce types (Such as arrays like `CustomResource[]`, or collections like `List<CustomResource>`).
+
+However you still **CAN** load custom resource types that contain collections of custom resource types.
 
 ## Settings
 
@@ -62,7 +69,7 @@ All settings are listed below:
 
 **Resource Script Directories** - The paths to the directories where you want to scan for C# resource scripts to register as custom resources. By default, it only contains "res://". 
 
-**Resource Prototype Directories** - The paths to the directories where you want to scan for the "template" resource files.
+**Resource Prototype Directories** - The paths to the directories where you want to scan for the prototype resource files, which serve as templates for the Plugin to build new resources off of.
 
 **Search Type** - The method used to gather custom C# resource scripts.
 
