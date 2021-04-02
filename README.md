@@ -45,7 +45,12 @@ You can use the `MonoCustomResourceIO` class to save and load custom Resources u
 
 Since the Godot Engine's ResourceSaver.Save() functionality is currently broken (as of v3.2.3), this plugin uses an alternative method of saving. This method involves setting up empty resource files that will serve as "prototypes" or "templates" for the plugin to build a new custom resource class off of.
 
-Therefore after adding your custom C# resource to the Plugin's registry you must create a new resouce of that type using **RMB > New Resource** in the **FileSystem** window and this resource must be named `CustomResourceClassName\_ResourcePrototype`, where `CustomResourceClassName` should be replaced with the exact name of your class (excluding namespaces). This resource must also be placed underneath a directory that is a part of **Resource Prototype Directories** in order to let the plugin scan and obtain this template. All of the **Script Variables** in this resource should be set to a value and **NONE** should be `null`. You can edit the **Script Variables** of the resource by double clicking on the resource in the **FileSystem** and opening up the **Inspector** window.
+#### Prototype Resources
+Therefore after adding your custom C# resource to the Plugin's registry you must create a new resouce of that type using **RMB > New Resource** in the **FileSystem** window and this resource must be named `CustomResourceClassName\_ResourcePrototype`, where `CustomResourceClassName` should be replaced with the exact name of your class (excluding namespaces). This resource will serve as a prototype resource for the plugin to build new resources of the same type off of. 
+
+This prototype resource must also be placed underneath a directory that is a part of **Resource Prototype Directories** in order to let the plugin scan and obtain this prototype. 
+
+For each exported variable in a prototype resource that is a custom resource type, make sure to assign a new instance of that type to the variable and make sure this new instance is stored witin the prototype resource. This creation of a built-in instance can be done by opening the prototype resource file, going to the **Inspector** window, clicking on the `(empty)` slot next to the custom resource type variable, and finally clicking `New YourCustomResourceName`.
 
 ### Limitations to Saving/Loading
 
