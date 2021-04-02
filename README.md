@@ -1,4 +1,4 @@
-# Godot Mono CustomResourceRegister Plugin
+# Godot Mono Custom Resource Registry Plugin
 
 This is a Godot C# plugin that registers custom C# resources and custom nodes for Godot. This plugin works as a workaround for this Godot engine [issue](https://github.com/godotengine/godot/issues/27470).
 
