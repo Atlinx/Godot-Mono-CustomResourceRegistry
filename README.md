@@ -10,7 +10,7 @@ Modified by [Atlinx](https://github.com/Atlinx)
 
 ## Installation
 
-1. Download the "CustomResourceRegister" folder and place it under the "res://addons" directory in your Godot project.
+1. Download the "CustomResourceRegistry" folder and place it under the "res://addons" directory in your Godot project.
 2. Press the **Build** button on the top right of Godot editor to rebuild the solution.
 3. Go to **Project Settings > Plugins** and press the **Enable** checkbox next to the CustomResourceRegister plugin to enable the plugin. This will create a tab called "CRR" on the bottom of the editor.
 
