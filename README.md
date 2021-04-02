@@ -62,6 +62,8 @@ All settings are listed below:
 
 **Resource Script Directories** - The paths to the directories where you want to scan for C# resource scripts to register as custom resources. By default, it only contains "res://". 
 
+**Resource Prototype Directories** - The paths to the directories where you want to scan for the "template" resource files.
+
 **Search Type** - The method used to gather custom C# resource scripts.
 
 - **Namespace** - Looks for scripts by using their namespace as a directory.
