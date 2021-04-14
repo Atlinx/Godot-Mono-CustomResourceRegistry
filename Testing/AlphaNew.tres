@@ -5,13 +5,13 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
+TextField = ""
 TextField2 = ""
 FloatArrayField = PoolRealArray(  )
 FloatField = 0.0
-TextField = ""
 
 [resource]
 script = ExtResource( 1 )
 TextField = ""
-BetaSubResource = SubResource( 1 )
 IntegerField = 0
+BetaSubResource = SubResource( 1 )

@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource( 1 )
 TextField = "Alpha Instance"
-BetaSubResource = ExtResource( 2 )
 IntegerField = 13
+BetaSubResource = ExtResource( 2 )
