@@ -9,7 +9,6 @@ public static class MonoCustomResourceIO
 {
     public static T Load<T>(string resourcePath) where T : Resource, new()
     {
-        GD.Print($"Loading Resource at path: {resourcePath}");
         // Godot supports C# resouce loading. Yay!
         return ResourceLoader.Load<T>(resourcePath);
     }
@@ -65,9 +64,7 @@ public static class MonoCustomResourceIO
         var props = GetCustomResourceProperties(diskResource);
         foreach (var prop in props)
         {
-            GD.Print($"Prop: {prop} | Is null? {prop == null}");
             var propInfo = resource.GetType().GetProperty(prop);
-            GD.Print($"PropInfo null? {propInfo == null}");
             if (propInfo.PropertyType.Assembly == Assembly.GetExecutingAssembly())
             {
                 if (propInfo.PropertyType.IsArray && propInfo.PropertyType.GetElementType().IsSubclassOf(typeof(Resource)))
