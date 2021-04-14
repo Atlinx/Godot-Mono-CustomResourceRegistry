@@ -35,6 +35,27 @@ To delete custom C# resources/nodes:
 
 Anytime the Plugin registers/unregisters a resource/node, the plugin will print its actions into the **Output** window.
 
+### Structure of Custom C# Resources
+
+If you want information to be loaded/saved, it must be stored in a property with the `[Export]` attribute.
+
+For example:
+
+```C#
+public class CustomResource : Resouce
+{
+  // Serialized information (Information that will be loaded and saved)
+  [Export]
+  private int SerializeMe { get; private set; }
+  [Export]
+  public float SerializeMeToo { get; set; }
+  
+  // Not serialized
+  public string DontSerializeMe { get; set; }
+  private string dontSerializeMeToo;
+}
+```
+
 ### Saving/Loading Custom C# Resources at Runtime
 
 You can use the `MonoCustomResourceIO` class to save and load custom Resources using your script. This class features 3 static methods, which are
