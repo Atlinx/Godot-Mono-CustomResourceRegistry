@@ -10,8 +10,8 @@ Modified by [Atlinx](https://github.com/Atlinx)
 
 ## Installation
 
-1. Head over to the [Releases](https://github.com/Atlinx/Godot-Mono-CustomResourceRegistry/releases/latest) page.
-2. Download the "CustomResourceRegistry_vXX.XX.XX" zip file, unzip it, and move the "CustomResourceRegistry" that's inside under the "res://addons" directory in your Godot project.
+1. Head over to the [Releases](https://github.com/Atlinx/Godot-Mono-CustomResourceRegistry/releases/latest) page of this repository.
+2. Download the "CustomResourceRegistry_vXX.XX.XX" zip file of a release, unzip it, and move the "CustomResourceRegistry" that's inside under the "res://addons" directory in your Godot project.
 3. Press the **Build** button on the top right of Godot editor to rebuild the solution.
 4. Go to **Project Settings > Plugins** and press the **Enable** checkbox next to the CustomResourceRegister plugin to enable the plugin. This will create a tab called "CRR" on the bottom of the editor.
 
