@@ -37,7 +37,7 @@ Anytime the Plugin registers/unregisters a resource/node, the plugin will print 
 
 ### Structure of Custom C# Resources
 
-If you want information to be loaded/saved, it must be stored in a property with the `[Export]` attribute.
+If you want information to be serialized (loaded/saved), it must be stored in a property with the `[Export]` attribute.
 
 For example:
 
@@ -53,8 +53,12 @@ public class CustomResource : Resouce
   // Not serialized
   public string DontSerializeMe { get; set; }
   private string dontSerializeMeToo;
+  [Export]
+  public bool alsoNotSerialized;
 }
 ```
+
+Note there currently is no support for serializing fields with the `[Export]` attribute. Contributions for implementing this feature are welcomed.
 
 ### Saving/Loading Custom C# Resources at Runtime
 
