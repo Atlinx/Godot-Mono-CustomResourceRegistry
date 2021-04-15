@@ -27,6 +27,7 @@ To add a custom C# resource:
 
 To add a custom C# node:
 1. Create a C# class in a new file that implements `ICustomNode`. The file that stores this class must have the same name as this class. Make sure to add `using MonoCustomResourceRegistry` to the top of your file to import this plugin's namespace which contains `ICustomNode`.
+2. Make sure your C# file is under one of the [**Resource Script Directories**](#settings)
 3. Rebuild the solution
 4. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
 
