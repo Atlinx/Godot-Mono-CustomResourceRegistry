@@ -13,7 +13,7 @@ Modified by [Atlinx](https://github.com/Atlinx)
 1. Head over to the [Releases](https://github.com/Atlinx/Godot-Mono-CustomResourceRegistry/releases/latest) page of this repository.
 2. Download the "CustomResourceRegistry_vXX.XX.XX" zip file of a release, unzip it, and move the "CustomResourceRegistry" that's inside under the "res://addons" directory in your Godot project.
 3. Press the **Build** button on the top right of Godot editor to rebuild the solution.
-4. Go to **Project Settings > Plugins** and press the **Enable** checkbox next to the CustomResourceRegister plugin to enable the plugin. This will create a tab called "CRR" on the bottom of the editor.
+4. Go to **Project Settings > Plugins** and press the **Enable** checkbox next to the CustomResourceRegistry plugin to enable the plugin. This will create a tab called "CRR" on the bottom of the editor.
 
 ## How to Use 
 
@@ -87,7 +87,7 @@ However you still **CAN** load custom resource types that contain collections of
 ## Settings
 
 This plugin comes with some settings to configure how C# resources are loaded.
-The settings can be accessed by going to **Project > ProjectSettings > General > Custom Resource Register**.
+The settings can be accessed by going to **Project > ProjectSettings > General > Custom Resource Registry**.
 
 All settings are listed below:
 
