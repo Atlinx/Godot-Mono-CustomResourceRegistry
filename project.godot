@@ -22,7 +22,7 @@ ResourcePrototypeDirectories=[ "res://Testing/ResourcePrototypes" ]
 
 [application]
 
-config/name="CustomResourceRegister"
+config/name="Godot-Mono-CustomResourceRegistry"
 run/main_scene="res://Testing/Test.tscn"
 config/icon="res://Testing/icon.png"
 
