@@ -21,7 +21,7 @@ Modified by [Atlinx](https://github.com/Atlinx)
 
 To add a custom C# resource:
 1. Create a C# class in a new file that extends `Godot.Resource`. This class must have a parameterless constructor. The file that stores this class must have the same name as this class.
-2. Make sure your C# file is under one of the [**Resource Script Directories**](##Settings)
+2. Make sure your C# file is under one of the [**Resource Script Directories**](#settings)
 3. Rebuild the solution
 4. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
 
