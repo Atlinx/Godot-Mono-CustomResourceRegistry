@@ -11,6 +11,7 @@ namespace MonoCustomResourceRegistry
 {
 	public interface ICustomNode {}
 
+	#if TOOLS
 	[Tool]
 	public class Plugin : EditorPlugin
 	{
@@ -180,4 +181,5 @@ namespace MonoCustomResourceRegistry
 			RegisterCustomClasses();
 		}
 	}
+	#endif
 }
