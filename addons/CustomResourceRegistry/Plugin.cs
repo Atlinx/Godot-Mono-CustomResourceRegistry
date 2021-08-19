@@ -25,6 +25,7 @@ namespace MonoCustomResourceRegistry
 			RegisterCustomClasses();
 			control = CreateBottomMenuControl();
 			AddControlToBottomPanel(control, "CRR");
+			GD.PushWarning("You may change any setting for MonoCustomResourceRegistry in Project -> ProjectSettings -> General -> MonoCustomResourceRegistry");
 		}
 
 		public override void _ExitTree()
