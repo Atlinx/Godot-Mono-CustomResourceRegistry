@@ -16,17 +16,12 @@ namespace MonoCustomResourceRegistry
 		public static string ClassPrefix => GetSettings(nameof(ClassPrefix)).ToString();
 		public static ResourceSearchType SearchType => (ResourceSearchType) GetSettings(nameof(SearchType));
 		public static ReadOnlyCollection<string> ResourceScriptDirectories => new ReadOnlyCollection<string>(((Array) GetSettings(nameof(ResourceScriptDirectories))).Cast<string>().ToList());
-		public static ReadOnlyCollection<string> ResourcePrototypeDirectories => new ReadOnlyCollection<string>(((Array) GetSettings(nameof(ResourcePrototypeDirectories))).Cast<string>().ToList());
 
 		public static void Init()
 		{
 			AddSetting(nameof(ClassPrefix), Variant.Type.String, "");
-
 			AddSetting(nameof(SearchType), Variant.Type.Int, ResourceSearchType.Recursive, PropertyHint.Enum, "Recursive,Namespace");
-
 			AddSetting(nameof(ResourceScriptDirectories), Variant.Type.StringArray, new  Array<string> (new string[]{ "res://"}));
-
-			AddSetting(nameof(ResourcePrototypeDirectories), Variant.Type.StringArray, new  Array<string> (new string[]{ "res://ResourcePrototypes"}));
 		}
 
 		private static object GetSettings(string title)
@@ -37,9 +32,8 @@ namespace MonoCustomResourceRegistry
 		private static void AddSetting(string title, Variant.Type type, object value, PropertyHint hint = PropertyHint.None, string hintString = "")
 		{
 			title = SettingPath(title);
-			if (ProjectSettings.HasSetting(title))
-				return;
-			ProjectSettings.SetSetting(title, value);
+			if (!ProjectSettings.HasSetting(title))
+				ProjectSettings.SetSetting(title, value);
 			var info = new Dictionary
 			{
 				["name"] = title,
