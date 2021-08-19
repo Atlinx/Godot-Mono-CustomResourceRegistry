@@ -8,6 +8,10 @@ Reflection saving and loading originally written by [rob-mur](https://github.com
 
 Modified by [Atlinx](https://github.com/Atlinx)
 
+## UPDATE:
+There has been a workaround found for resource saving, by cgbeutler, which makes the saving features of this plugin irrelevant.
+[Here is the link to their post](https://gist.github.com/cgbeutler/c4f00b98d744ac438b84e8840bbe1740).
+
 ## Installation
 
 1. Head over to the [Releases](https://github.com/Atlinx/Godot-Mono-CustomResourceRegistry/releases/latest) page of this repository.
@@ -77,6 +81,7 @@ public class CustomResource : Resouce
 Note there currently is no support for serializing fields with the `[Export]` attribute. Contributions for implementing this feature are welcomed.
 
 ### Saving/Loading Custom C# Resources at Runtime
+## DEPRECATED
 
 You can use the `MonoCustomResourceIO` class to save and load custom Resources using your script. This class features 3 static methods, which are
 - `Load<T>()` - Loads a custom resource of type `T`.
