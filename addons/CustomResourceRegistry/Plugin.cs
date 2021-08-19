@@ -9,7 +9,7 @@ using Godot;
 // wmigor's Public Repo: https://github.com/wmigor/godot-mono-custom-resource-register
 namespace MonoCustomResourceRegistry
 {
-	public interface ICustomNode {}
+	public interface IRegisteredResource {}
 
 	#if TOOLS
 	[Tool]
@@ -148,7 +148,7 @@ namespace MonoCustomResourceRegistry
 		{
 			var assembly = Assembly.GetAssembly(typeof(Plugin));
 			return assembly.GetTypes().Where(t =>
-				!t.IsAbstract && typeof(ICustomNode).IsAssignableFrom(t) && t.IsSubclassOf(typeof(Node)));
+				!t.IsAbstract && typeof(IRegisteredResource).IsAssignableFrom(t) && t.IsSubclassOf(typeof(Node)));
 		}
 
 		private void UnregisterCustomClasses()
