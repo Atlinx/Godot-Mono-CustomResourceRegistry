@@ -2,7 +2,7 @@ using Godot;
 using System;
 using MonoCustomResourceRegistry;
 
-public class CustomNodeDemo : Node, ICustomNode
+public class CustomNodeDemo : Node, IRegisteredResource
 {
     // Declare member variables here. Examples:
     // private int a = 2;

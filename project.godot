@@ -14,10 +14,9 @@ _global_script_class_icons={
 
 [MonoCustomResourceRegistry]
 
-ClassPrefix="0_"
+ClassPrefix=""
 SearchType=0
 ResourceScriptDirectories=[ "res://" ]
-ResourcePrototypeDirectories=[ "res://Testing/ResourcePrototypes" ]
 
 [application]
 
@@ -27,7 +26,7 @@ config/icon="res://Testing/icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "CustomResourceRegistry" )
+enabled=PoolStringArray( "res://addons/CustomResourceRegistry/plugin.cfg" )
 
 [rendering]
 
