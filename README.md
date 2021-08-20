@@ -19,39 +19,74 @@ There has been a workaround found for resource saving, by cgbeutler, which makes
 
 ## How to Use 
 
-### Adding/Removing Custom C# Resouces/Nodes
+### Adding custom C# resources/nodes:
 
-To add a custom C# resource:
-1. Create a C# class in a new file that extends `Godot.Resource`. This class must have a parameterless constructor. The file that stores this class must have the same name as this class.
+1. Add the [**RegisteredTypeAttribute**](#registeredtypeattribute) to your resource/node class. The file containing your class must have the same name as the class in order to be detected by the plugin. Make sure to add `using MonoCustomResourceRegistry;` to the top of your file to import this plugin's namespace, which contains `RegisteredTypeAttribute`.
 2. Make sure your C# file is under one of the [**Resource Script Directories**](#settings)
 3. Rebuild the solution
-4. Press the **"CRR"** button to update the registered custom resources
+4. Press the **"CRR"** button to update the registered types
 
-To add a custom C# node:
-1. Create a C# class in a new file that implements `IRegisteredResource`. The file that stores this class must have the same name as this class. Make sure to add `using MonoCustomResourceRegistry;` to the top of your file to import this plugin's namespace which contains `IRegisteredResource`.
-2. Make sure your C# file is under one of the [**Resource Script Directories**](#settings)
-3. Rebuild the solution
-4. Press the **"CRR"** button to update the registered custom resources
+### Deleting custom C# resources/nodes:
 
-Sample C# node script
-```C#
-using MonoCustomResourceRegistry;
-
-public class CustomNodeDemo : IRegisteredResource
-{
-  public override void _Ready()
-  {
-    
-  }
-}
-```
-
-To delete custom C# resources/nodes:
 1. Delete the C# resource/node script
 2. Rebuild the solution
-3. Press the **"CRR"** button to update the registered custom resources
+3. Press the **"CRR"** button to update the registered types
 
 Anytime the Plugin registers/unregisters a resource/node, the plugin will print its actions into the **Output** window.
+
+## RegisteredTypeAttribute
+
+```C#
+[RegisteredType(string name, string iconPath = "", string baseType = ""))]
+```
+
+- **name** - Name of the custom type.
+- **iconPath** (Optional) - File path to the icon displayed for the custom type. Leave empty for no custom icon.
+- **baseType** (Optional) - Name of the base type. Leave empty for the default base type (**"Node"** for custom nodes and **"Resource"** for custom resources).
+
+Sample usage:
+```C#
+// Inside a file named CustomNodeDemo.cs
+using MonoCustomResourceRegistry;
+
+// Registers a custom type with 
+// 		a name of "CustomNodeDemo",
+//		an icon located at "res://custom_icon.png",
+//		and a base type of "Node2D"
+[RegisteredType(nameof(CustomNodeDemo), "res://custom_icon.png", nameof(Node2D))]
+public class CustomNodeDemo : Node2D
+{
+	...
+}
+```
+```C#
+// Inside a file named CustomNodeDemo2.cs
+using MonoCustomResourceRegistry;
+
+// Registers a custom type with 
+// 		a name of "CustomNodeDemo",
+//		no icon,
+//		and a base type of "Button"
+[RegisteredType(nameof(CustomNodeDemo), "", nameof(Button))]
+public class CustomNodeDemo2 : Button
+{
+	...
+}
+```
+```C#
+// Inside a file named CustomNodeDemo3.cs
+using MonoCustomResourceRegistry;
+
+// Registers a custom type with 
+// 		a name of "CustomNodeDemo",
+//		no icon,
+//		and a default base type of "Resource"
+[RegisteredType(nameof(CustomNodeDemo))]
+public class CustomNodeDemo3 : Resource
+{
+	...
+}
+```
 
 ## Settings
 
@@ -62,19 +97,21 @@ All settings are listed below:
 
 **Class Prefix** - The prefix that is seen before all custom nodes and resources.
 
-**Resource Script Directories** - The paths to the directories where you want to scan for C# resource scripts to register as custom resources. By default, it only contains "res://". 
+**Resource Script Directories** - The paths to the directories where you want to scan for C# resource scripts to register as custom resources. By default, it only contains **"res://"**. 
 
 **Search Type** - The method used to gather custom C# resource scripts.
 
-- **Namespace** - Looks for scripts by using their namespace as a directory.
-For example with the C# script below, the plugin will look under each resource script directory for the script by using the path "./Some/Long/Namespace/Something.cs"
-```C#
-namespace Some.Long.Namespace
-{
-  public class Something : Resource
-  {
-  }
-}
-```
+- **Namespace** - Looks for scripts by using their namespace as a directory. 
+	
+	For example with the C# script below, the plugin will look under each resource script directory for the script by using the path **"./Some/Long/Namespace/Something.cs"**.
 
-- **Recursive** - Looks for scripts by searching through all "Resource Script Directories" and the directories within them. When using this method, you cannot have multiple resources that have the same class name.
+	```C#
+	namespace Some.Long.Namespace
+	{
+		public class Something : Resource
+		{
+		}
+	}
+	```
+
+- **Recursive** - Looks for scripts by searching through all "Resource Script Directories" and the directories within them.

@@ -58,7 +58,10 @@ namespace MonoCustomResourceRegistry
 			File file = new File();
 
 			foreach (Type type in GetCustomRegisteredTypes())
-				AddRegisteredType(type, nameof(Resource), file);
+				if (type.IsSubclassOf(typeof(Resource)))
+					AddRegisteredType(type, nameof(Resource), file);
+				else
+					AddRegisteredType(type, nameof(Node), file);
 		}
 		
 		private void AddRegisteredType(Type type, string defaultBaseTypeName, File file)
