@@ -1,19 +1,13 @@
 # Godot Mono Custom Resource Registry Plugin
 
-This is a Godot C# plugin that registers custom C# resources and custom nodes for Godot. This plugin serves as a workaround for the Godot engine's [C# resource missing in context menu issue](https://github.com/godotengine/godot/issues/27470) and [C# resource saving issue](https://github.com/godotengine/godot/issues/38191).
+This is a Godot C# plugin that registers custom C# resources and custom nodes for Godot. This plugin serves as a workaround for the Godot engine's [C# resource missing in context menu issue](https://github.com/godotengine/godot/issues/27470).
 
 Based off of *CustomResourceRegisterPlugin* made by [wmigor](https://github.com/wmigor/godot-mono-custom-resource-register)
-
-Modified by [Atlinx](https://github.com/Atlinx)
-
-## UPDATE:
-There has been a workaround found for resource saving, by cgbeutler, which makes the saving features of this plugin irrelevant.
-[Here is the link to their post](https://gist.github.com/cgbeutler/c4f00b98d744ac438b84e8840bbe1740).
 
 ## Installation
 
 1. Head over to the [Releases](https://github.com/Atlinx/Godot-Mono-CustomResourceRegistry/releases/latest) page of this repository.
-2. Download the "CustomResourceRegistry_vXX.XX.XX" zip file of a release, unzip it, and move the "CustomResourceRegistry" that's inside under the "res://addons" directory in your Godot project.
+2. Download the "MonoCustomResourceRegistry_vXX.XX.XX" zip file of a release, unzip it, and move the "MonoCustomResourceRegistry" folder that's inside under the "res://addons" directory in your Godot project.
 3. Press the **Build** button on the top right of Godot editor to rebuild the solution.
 4. Go to **Project Settings > Plugins** and press the **Enable** checkbox next to the CustomResourceRegistry plugin to enable the plugin. This will create a **"CRR"** button on the top right of the editor.
 
