@@ -15,24 +15,39 @@ namespace MonoCustomResourceRegistry
 	[Tool]
 	public class Plugin : EditorPlugin
 	{
+		// We're not going to hijack the Mono Build button since it actually takes time to build
+		// and we can't be sure how long that is. I guess we have to leave refreshing to the user for now.
+		// There isn't any automation we can do to fix that.
+		// private Button MonoBuildButton => GetNode<Button>("/root/EditorNode/@@580/@@581/@@589/@@590/ToolButton");
 		private readonly List<string> customTypes = new List<string>();
-		private Control control;
+		private Button refreshButton;
 
 		public override void _EnterTree()
 		{
-			UnregisterCustomClasses();
+			refreshButton = new Button();
+			refreshButton.Text = "CCR";
+			
+			AddControlToContainer(CustomControlContainer.Toolbar, refreshButton);
+			refreshButton.Icon = refreshButton.GetIcon("Reload", "EditorIcons");
+			refreshButton.Connect("pressed", this, nameof(OnRefreshPressed));
+
 			Settings.Init();
-			RegisterCustomClasses();
-			control = CreateBottomMenuControl();
-			AddControlToBottomPanel(control, "CRR");
+			RefreshCustomClasses();
 			GD.PushWarning("You may change any setting for MonoCustomResourceRegistry in Project -> ProjectSettings -> General -> MonoCustomResourceRegistry");
 		}
 
 		public override void _ExitTree()
 		{
 			UnregisterCustomClasses();
-			RemoveControlFromBottomPanel(control);
-			control = null;
+			RemoveControlFromContainer(CustomControlContainer.Toolbar, refreshButton);
+			refreshButton.QueueFree();
+		}
+
+		public void RefreshCustomClasses()
+		{
+			GD.Print("\nRefreshing Registered Resources...");
+			UnregisterCustomClasses();
+			RegisterCustomClasses();
 		}
 
 		private void RegisterCustomClasses()
@@ -163,23 +178,9 @@ namespace MonoCustomResourceRegistry
 			customTypes.Clear();
 		}
 
-		private Control CreateBottomMenuControl()
-		{
-			var container = new Container();
-			container.RectMinSize = new Vector2(0, 50);
-			
-			var button = new Button {Text = "Refresh"};
-			button.Connect("pressed", this, nameof(OnRefreshPressed));
-			container.AddChild(button);
-			button.SetAnchorsAndMarginsPreset(Control.LayoutPreset.Wide);
-
-			return container;
-		}
-
 		private void OnRefreshPressed()
 		{
-			UnregisterCustomClasses();
-			RegisterCustomClasses();
+			RefreshCustomClasses();
 		}
 	}
 	#endif
