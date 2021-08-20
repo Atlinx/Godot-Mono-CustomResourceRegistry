@@ -44,9 +44,9 @@ Sample usage:
 using MonoCustomResourceRegistry;
 
 // Registers a custom type with 
-// 		a name of "CustomNodeDemo",
-//		an icon located at "res://custom_icon.png",
-//		and a base type of "Node2D"
+// 	a name of "CustomNodeDemo",
+//	an icon located at "res://custom_icon.png",
+//	and a base type of "Node2D"
 [RegisteredType(nameof(CustomNodeDemo), "res://custom_icon.png", nameof(Node2D))]
 public class CustomNodeDemo : Node2D
 {
@@ -58,9 +58,9 @@ public class CustomNodeDemo : Node2D
 using MonoCustomResourceRegistry;
 
 // Registers a custom type with 
-// 		a name of "CustomNodeDemo",
-//		no icon,
-//		and a base type of "Button"
+// 	a name of "CustomNodeDemo",
+//	no icon,
+//	and a base type of "Button"
 [RegisteredType(nameof(CustomNodeDemo), "", nameof(Button))]
 public class CustomNodeDemo2 : Button
 {
@@ -72,9 +72,9 @@ public class CustomNodeDemo2 : Button
 using MonoCustomResourceRegistry;
 
 // Registers a custom type with 
-// 		a name of "CustomNodeDemo",
-//		no icon,
-//		and a default base type of "Resource"
+// 	a name of "CustomNodeDemo",
+//	no icon,
+//	and a default base type of "Resource"
 [RegisteredType(nameof(CustomNodeDemo))]
 public class CustomNodeDemo3 : Resource
 {
