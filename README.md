@@ -15,7 +15,7 @@ There has been a workaround found for resource saving, by cgbeutler, which makes
 1. Head over to the [Releases](https://github.com/Atlinx/Godot-Mono-CustomResourceRegistry/releases/latest) page of this repository.
 2. Download the "CustomResourceRegistry_vXX.XX.XX" zip file of a release, unzip it, and move the "CustomResourceRegistry" that's inside under the "res://addons" directory in your Godot project.
 3. Press the **Build** button on the top right of Godot editor to rebuild the solution.
-4. Go to **Project Settings > Plugins** and press the **Enable** checkbox next to the CustomResourceRegistry plugin to enable the plugin. This will create a tab called "CRR" on the bottom of the editor.
+4. Go to **Project Settings > Plugins** and press the **Enable** checkbox next to the CustomResourceRegistry plugin to enable the plugin. This will create a **"CRR"** button on the top right of the editor.
 
 ## How to Use 
 
@@ -25,13 +25,13 @@ To add a custom C# resource:
 1. Create a C# class in a new file that extends `Godot.Resource`. This class must have a parameterless constructor. The file that stores this class must have the same name as this class.
 2. Make sure your C# file is under one of the [**Resource Script Directories**](#settings)
 3. Rebuild the solution
-4. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
+4. Press the **"CRR"** button to update the registered custom resources
 
 To add a custom C# node:
 1. Create a C# class in a new file that implements `IRegisteredResource`. The file that stores this class must have the same name as this class. Make sure to add `using MonoCustomResourceRegistry;` to the top of your file to import this plugin's namespace which contains `IRegisteredResource`.
 2. Make sure your C# file is under one of the [**Resource Script Directories**](#settings)
 3. Rebuild the solution
-4. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
+4. Press the **"CRR"** button to update the registered custom resources
 
 Sample C# node script
 ```C#
@@ -49,7 +49,7 @@ public class CustomNodeDemo : IRegisteredResource
 To delete custom C# resources/nodes:
 1. Delete the C# resource/node script
 2. Rebuild the solution
-3. Open the "CRR" tab and press the **Refresh** button to update the registered custom resources
+3. Press the **"CRR"** button to update the registered custom resources
 
 Anytime the Plugin registers/unregisters a resource/node, the plugin will print its actions into the **Output** window.
 
