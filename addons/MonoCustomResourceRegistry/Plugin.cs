@@ -1,3 +1,6 @@
+using System.Runtime.InteropServices.ComTypes;
+using System.Security.AccessControl;
+using System.Linq.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +12,6 @@ using Godot;
 // wmigor's Public Repo: https://github.com/wmigor/godot-mono-custom-resource-register
 namespace MonoCustomResourceRegistry
 {
-	public interface IRegisteredResource {}
-
 	#if TOOLS
 	[Tool]
 	public class Plugin : EditorPlugin
@@ -54,35 +55,45 @@ namespace MonoCustomResourceRegistry
 		{
 			customTypes.Clear();
 
-			var file = new File();
+			File file = new File();
 
-			foreach (var type in GetCustomResourceTypes())
+			foreach (Type type in GetCustomRegisteredTypes())
+				AddRegisteredType(type, nameof(Resource), file);
+		}
+		
+		private void AddRegisteredType(Type type, string defaultBaseTypeName, File file)
+		{
+			RegisteredTypeAttribute attribute = (RegisteredTypeAttribute) Attribute.GetCustomAttribute(type, typeof(RegisteredTypeAttribute));
+			String path = FindClassPath(type);
+			if (path == null && !file.FileExists(path))
+				return;
+			Script script = GD.Load<Script>(path);
+			if (script == null)
+				return;
+			string baseType = defaultBaseTypeName;
+			if (attribute.baseType != "")
+				baseType = attribute.baseType;
+			ImageTexture icon = null;
+			if (attribute.iconPath != "")
 			{
-				var path = FindClassPath(type);
-				if (path == null)
-					continue;
-				var script = GD.Load<Script>(path);
-				if (script == null)
-					continue;
-				AddCustomType($"{Settings.ClassPrefix}{type.Name}", nameof(Resource), script, null);
-				GD.Print($"Register custom resource: {type.Name} -> {path}");
-				customTypes.Add($"{Settings.ClassPrefix}{type.Name}");
+				if (file.FileExists(attribute.iconPath))
+				{
+					Texture rawIcon = ResourceLoader.Load<Texture>(attribute.iconPath);
+					if (rawIcon != null)
+					{
+						Image image = rawIcon.GetData();
+						int length = (int) Mathf.Round(16 * GetEditorInterface().GetEditorScale());
+						image.Resize(length, length);
+						icon = new ImageTexture();
+						icon.CreateFromImage(image);
+					} else
+						GD.PushError($"Could not load the icon for the registered type \"{type.FullName}\" at path \"{path}\".");
+				} else 
+					GD.PushError($"The icon path of \"{path}\" for the registered type \"{type.FullName}\" does not exist.");
 			}
-
-			foreach (var type in GetCustomNodes())
-			{
-				var path = FindClassPath(type);
-				if (path == null)
-					continue;
-				if (!file.FileExists(path))
-					continue;
-				var script = GD.Load<Script>(path);
-				if (script == null)
-					continue;
-				AddCustomType($"{Settings.ClassPrefix}{type.Name}", nameof(Node), script, null);
-				GD.Print($"Register custom node: {type.Name} -> {path}");
-				customTypes.Add($"{Settings.ClassPrefix}{type.Name}");
-			}
+			AddCustomType($"{Settings.ClassPrefix}{type.Name}", baseType, script, icon);
+			customTypes.Add($"{Settings.ClassPrefix}{type.Name}");
+			GD.Print($"Registered custom type: {type.Name} -> {path}");
 		}
 
 		private static string FindClassPath(Type type)
@@ -154,17 +165,13 @@ namespace MonoCustomResourceRegistry
 			return null;
 		}
 
-		private static IEnumerable<Type> GetCustomResourceTypes()
+		private static IEnumerable<Type> GetCustomRegisteredTypes()
 		{
 			var assembly = Assembly.GetAssembly(typeof(Plugin));
-			return assembly.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(Resource)));
-		}
-
-		private static IEnumerable<Type> GetCustomNodes()
-		{
-			var assembly = Assembly.GetAssembly(typeof(Plugin));
-			return assembly.GetTypes().Where(t =>
-				!t.IsAbstract && typeof(IRegisteredResource).IsAssignableFrom(t) && t.IsSubclassOf(typeof(Node)));
+			return assembly.GetTypes().Where(t => !t.IsAbstract 
+				&& Attribute.IsDefined(t, typeof(RegisteredTypeAttribute)) 
+				&& (t.IsSubclassOf(typeof(Node)) || t.IsSubclassOf(typeof(Resource)))
+				);
 		}
 
 		private void UnregisterCustomClasses()

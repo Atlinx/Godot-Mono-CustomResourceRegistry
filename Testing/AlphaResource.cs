@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using MonoCustomResourceRegistry;
 
+[RegisteredType(nameof(AlphaResource), "")]
 public class AlphaResource : Resource
 {
     public AlphaResource() {}
