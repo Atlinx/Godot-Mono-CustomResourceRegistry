@@ -70,18 +70,37 @@ namespace MonoCustomResourceRegistry
 			String path = FindClassPath(type);
 			if (path == null && !file.FileExists(path))
 				return;
+			
 			Script script = GD.Load<Script>(path);
 			if (script == null)
 				return;
-			string baseType = defaultBaseTypeName;
+			
+			string baseTypeName = defaultBaseTypeName;
 			if (attribute.baseType != "")
-				baseType = attribute.baseType;
-			ImageTexture icon = null;
-			if (attribute.iconPath != "")
+				baseTypeName = attribute.baseType;
+			
+				ImageTexture icon = null;
+			string iconPath = attribute.iconPath;
+			if (iconPath == "")
 			{
-				if (file.FileExists(attribute.iconPath))
+				Type baseType = type.BaseType;
+				while (baseType != null)
 				{
-					Texture rawIcon = ResourceLoader.Load<Texture>(attribute.iconPath);
+					RegisteredTypeAttribute baseTypeAttribute = (RegisteredTypeAttribute)Attribute.GetCustomAttribute(baseType, typeof(RegisteredTypeAttribute));
+					if (baseTypeAttribute != null && baseTypeAttribute.iconPath != "")
+					{
+						iconPath = baseTypeAttribute.iconPath;
+						break;
+					}
+					baseType = baseType.BaseType;
+				}
+			}
+			
+			if (iconPath != "")
+			{
+				if (file.FileExists(iconPath))
+				{
+					Texture rawIcon = ResourceLoader.Load<Texture>(iconPath);
 					if (rawIcon != null)
 					{
 						Image image = rawIcon.GetData();
@@ -94,7 +113,8 @@ namespace MonoCustomResourceRegistry
 				} else 
 					GD.PushError($"The icon path of \"{path}\" for the registered type \"{type.FullName}\" does not exist.");
 			}
-			AddCustomType($"{Settings.ClassPrefix}{type.Name}", baseType, script, icon);
+
+			AddCustomType($"{Settings.ClassPrefix}{type.Name}", baseTypeName, script, icon);
 			customTypes.Add($"{Settings.ClassPrefix}{type.Name}");
 			GD.Print($"Registered custom type: {type.Name} -> {path}");
 		}
