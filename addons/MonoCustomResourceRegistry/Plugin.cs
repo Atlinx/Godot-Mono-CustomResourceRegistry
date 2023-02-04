@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 // Originally written by wmigor
 // Edited by Atlinx to recursively search for files.
@@ -113,8 +114,21 @@ namespace MonoCustomResourceRegistry
         {
             foreach (string dir in Settings.ResourceScriptDirectories)
             {
-                string filePath = $"{dir}/{type.Namespace?.Replace(".", "/") ?? ""}/{type.Name}.cs";
-                GD.Print(filePath);
+                StringBuilder builder = new(dir);
+                if (!dir.EndsWith('/'))
+                {
+                    builder.Append('/');
+                }
+                if (type.Namespace is not null)
+                {
+                    builder
+                        .Append(type.Namespace.Replace(".", "/"))
+                        .Append('/');
+                }
+                builder
+                    .Append(type.Name)
+                    .Append(".cs");
+                string filePath = builder.ToString();
                 if (FileAccess.FileExists(filePath))
                     return filePath;
             }
