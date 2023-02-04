@@ -1,11 +1,12 @@
 using Godot;
-using System;
 using MonoCustomResourceRegistry;
 
 [RegisteredType(nameof(AlphaResource), "")]
-public class AlphaResource : Resource
+public partial class AlphaResource : Resource
 {
-    public AlphaResource() {}
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    public AlphaResource() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     public AlphaResource(int integerField, string textField, BetaResource betaSubResource)
     {
