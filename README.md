@@ -1,6 +1,8 @@
 # Godot Mono Custom Resource Registry Plugin
 
-This is a Godot C# plugin that registers custom C# resources and custom nodes for Godot. This plugin serves as a workaround for the Godot engine's [C# resource missing in context menu issue](https://github.com/godotengine/godot/issues/27470).
+> NOTE: This is for the 4.x branch. If you are using Godot 3.x please refer to the main branch.
+
+This is a Godot C# plugin that registers custom C# resources and custom nodes for **Godot 4.x**. This plugin serves as a workaround for the Godot engine's [C# resource missing in context menu issue](https://github.com/godotengine/godot/issues/27470).
 
 Based off of *CustomResourceRegisterPlugin* made by [wmigor](https://github.com/wmigor/godot-mono-custom-resource-register)
 
