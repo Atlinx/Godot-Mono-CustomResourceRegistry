@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
-FloatArrayField = PoolRealArray(  )
+FloatArrayField = PackedFloat32Array(  )
 FloatField = 0.0
 TextField = ""
 TextField2 = ""

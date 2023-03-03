@@ -6,27 +6,28 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[  ]
-_global_script_class_icons={
-}
+config_version=5
 
 [MonoCustomResourceRegistry]
 
-ClassPrefix=""
 SearchType=0
-ResourceScriptDirectories=[ "res://" ]
+ResourceScriptDirectories=["res://"]
+ClassPrefix=""
 
 [application]
 
 config/name="Godot-Mono-CustomResourceRegistry"
 run/main_scene="res://Testing/Test.tscn"
+config/features=PackedStringArray("4.0", "C#")
 config/icon="res://Testing/icon.png"
+
+[dotnet]
+
+project/assembly_name="Godot-Mono-CustomResourceRegistry"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/MonoCustomResourceRegistry/plugin.cfg" )
+enabled=PackedStringArray("res://addons/MonoCustomResourceRegistry/plugin.cfg")
 
 [rendering]
 

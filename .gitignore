@@ -3,6 +3,11 @@
 export.cfg
 export_presets.cfg
 
+# Godot 4+ specific ignores
+.godot/
+.vs/
+*.old
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 

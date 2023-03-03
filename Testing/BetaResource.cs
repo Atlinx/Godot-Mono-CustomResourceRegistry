@@ -3,7 +3,7 @@ using System;
 using MonoCustomResourceRegistry;
 
 [RegisteredType(nameof(BetaResource), "res://Testing/icon.png")]
-public class BetaResource : Resource
+public partial class BetaResource : Resource
 {
     public BetaResource() {}
 

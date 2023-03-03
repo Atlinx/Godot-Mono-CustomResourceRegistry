@@ -6,5 +6,5 @@
 script = ExtResource( 1 )
 TextField = "Beta Instance"
 TextField2 = "Alpha Overwrite Beta!!"
-FloatArrayField = PoolRealArray( 0.4, 0.5 )
+FloatArrayField = PackedFloat32Array( 0.4, 0.5 )
 FloatField = 34.3
