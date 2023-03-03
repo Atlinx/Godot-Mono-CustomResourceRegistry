@@ -23,6 +23,6 @@ public class AlphaResource : Resource
 
     public override string ToString()
     {
-        return $"Alpha: [{IntegerField} {TextField} {BetaSubResource}]";
+        return $"Alpha: [ {IntegerField} | {TextField} | {BetaSubResource} ]";
     }
 }

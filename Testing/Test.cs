@@ -1,10 +1,33 @@
+using System.Net.Mime;
+using System.Security.AccessControl;
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Test : Node
 {
+    [Export]
+    public Resource resourceOne;
+    [Export]
+    public Resource resourceTwo;
+    [Export]
+    public List<Resource> resourceList;
+
+    [Export]
+    public NodePath labelNodePath;
+    private Label label;
+
     public override void _Ready()
     {
+        label = GetNode<Label>(labelNodePath);
+
+        label.Text = "";
+        label.Text += "Resource One: " + resourceOne + "\n";
+        label.Text += "Resource Two: " + resourceTwo + "\n";
+        label.Text += "Resource List:\n";
+        foreach(Resource resource in resourceList) {
+            label.Text += "\t" + resource + "\n";
+        }
         // Weird Godot loading behaviour
         // Sub resources can only load once parent resouces load.
         // That is, betaSub can only load once alphaNew, which contains betaSub, has been loaded.

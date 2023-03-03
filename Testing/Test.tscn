@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Testing/Test.cs" type="Script" id=1]
+[ext_resource path="res://Testing/GammaWithEmbeded&External.tres" type="Resource" id=2]
+[ext_resource path="res://Testing/AlphaEmpty.tres" type="Resource" id=3]
+[ext_resource path="res://Testing/AlphaWithEmbededBeta.tres" type="Resource" id=4]
+[ext_resource path="res://Testing/BetaFilled.tres" type="Resource" id=5]
+[ext_resource path="res://Testing/AlphaWithExternal.tres" type="Resource" id=6]
+[ext_resource path="res://Testing/BetaEmpty.tres" type="Resource" id=7]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
+resourceOne = ExtResource( 4 )
+resourceTwo = ExtResource( 2 )
+resourceList = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ]
+labelNodePath = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "sdfsdf"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

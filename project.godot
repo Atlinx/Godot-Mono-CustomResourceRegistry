@@ -28,6 +28,10 @@ config/icon="res://Testing/icon.png"
 
 enabled=PoolStringArray( "res://addons/MonoCustomResourceRegistry/plugin.cfg" )
 
+[mono]
+
+project/assembly_name="Godot-Mono-CustomResourceRegistry"
+
 [rendering]
 
 environment/default_environment="res://Testing/default_env.tres"

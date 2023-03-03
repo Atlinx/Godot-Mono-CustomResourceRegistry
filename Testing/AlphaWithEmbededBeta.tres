@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Testing/BetaResource.cs" type="Script" id=1]
+[ext_resource path="res://Testing/AlphaResource.cs" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+FloatArrayField = PoolRealArray(  )
+FloatField = 123123.0
+TextField = "I'm Embeded!"
+TextField2 = "asdfsadf"
+
+[resource]
+script = ExtResource( 2 )
+IntegerField = 0
+TextField = ""
+BetaSubResource = SubResource( 1 )

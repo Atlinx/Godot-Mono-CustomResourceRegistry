@@ -18,6 +18,6 @@ public class GammaResource : Resource
 
     public override string ToString()
     {
-        return $"Gamma: [{String.Join<BetaResource>(", ", BetaArray)} {TextField}]";
+        return $"Gamma: [ {String.Join<BetaResource>(", ", BetaArray)} | {TextField} ]";
     }
 }
