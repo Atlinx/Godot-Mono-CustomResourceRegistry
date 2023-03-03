@@ -49,6 +49,7 @@ namespace MonoCustomResourceRegistry
                 ["hint_string"] = hintString,
             };
             ProjectSettings.AddPropertyInfo(info);
+            GD.Print("Successfully added property: " + title);
         }
 
         private static string SettingPath(string title) => $"{nameof(MonoCustomResourceRegistry)}/{title}";
