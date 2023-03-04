@@ -18,7 +18,7 @@ jobs:
       - name: Create Release
         run: |
           mkdir release
-          mv addons/Godot-Mono-CustomResourceRegistry release
+          mv addons/MonoCustomResourceRegistry release
           pushd release
           zip -r ../Release.zip *
           popd
