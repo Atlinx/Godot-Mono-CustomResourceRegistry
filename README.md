@@ -1,6 +1,6 @@
 # Godot Mono Custom Resource Registry Plugin
 
-> NOTE: The main branch is for Godot 3.x. If you are using Godot 4.x please refer to the `godot-4.x` branch, where you can download the plugin directly from that branch's the addons folder.
+> NOTE: This branch is for Godot 3.x. If you are using Godot 4.x please refer to the `main` branch.
 
 This is a Godot C# plugin that registers custom C# resources and custom nodes for **Godot 3.x**. This plugin serves as a workaround for the Godot engine's [C# resource missing in context menu issue](https://github.com/godotengine/godot/issues/27470).
 
