@@ -4,7 +4,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class Test : Node
+public partial class Test : Node
 {
     [Export]
     public Resource resourceOne;

@@ -5,8 +5,8 @@
 [ext_resource path="res://Testing/BetaFilled.tres" type="Resource" id=3]
 
 [sub_resource type="Resource" id=1]
-script = ExtResource( 2 )
-FloatArrayField = PoolRealArray(  )
+script = ExtResource( 3 )
+FloatArrayField = PackedFloat32Array(  )
 FloatField = 0.0
 TextField = "I'm embedded in Gamma!"
 TextField2 = ""

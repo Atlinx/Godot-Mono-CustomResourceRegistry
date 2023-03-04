@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource( 1 )
-FloatArrayField = PoolRealArray(  )
+TextField = ""
+TextField2 = ""
+FloatArrayField = PackedFloat32Array(  )
 FloatField = 0.0
 TextField = ""
 TextField2 = ""

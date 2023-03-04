@@ -4,11 +4,11 @@
 [ext_resource path="res://Testing/AlphaResource.cs" type="Script" id=2]
 
 [sub_resource type="Resource" id=1]
-script = ExtResource( 1 )
-FloatArrayField = PoolRealArray(  )
-FloatField = 123123.0
-TextField = "I'm Embeded!"
-TextField2 = "asdfsadf"
+script = ExtResource( 2 )
+TextField = ""
+TextField2 = ""
+FloatArrayField = PackedFloat32Array(  )
+FloatField = 0.0
 
 [resource]
 script = ExtResource( 2 )

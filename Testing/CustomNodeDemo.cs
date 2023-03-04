@@ -3,7 +3,7 @@ using System;
 using MonoCustomResourceRegistry;
 
 [RegisteredType(nameof(CustomNodeDemo), "res://Testing/icon.png", nameof(Node2D))]
-public class CustomNodeDemo : Node2D
+public partial class CustomNodeDemo : Node2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;

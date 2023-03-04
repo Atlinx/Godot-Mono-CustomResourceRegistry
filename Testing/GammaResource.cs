@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class GammaResource : Resource
+public partial class GammaResource : Resource
 {
     public GammaResource() {}
     
