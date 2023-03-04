@@ -36,7 +36,7 @@ namespace MonoCustomResourceRegistry
             return ProjectSettings.GetSetting($"{nameof(MonoCustomResourceRegistry)}/{title}");
         }
 
-        private static void AddSetting(string title, Variant.Type type, object value, PropertyHint hint = PropertyHint.None, string hintString = "")
+        private static void AddSetting<T>(string title, Variant.Type type, T value, PropertyHint hint = PropertyHint.None, string hintString = "")
         {
             title = SettingPath(title);
             if (!ProjectSettings.HasSetting(title))
