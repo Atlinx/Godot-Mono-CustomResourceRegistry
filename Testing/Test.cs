@@ -1,6 +1,7 @@
 using System.Net.Mime;
 using System.Security.AccessControl;
 using Godot;
+using GDC = Godot.Collections;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ public partial class Test : Node
     [Export]
     public Resource resourceTwo;
     [Export]
-    public List<Resource> resourceList;
+    public GDC.Array<Resource> resourceList;
 
     [Export]
     public NodePath labelNodePath;
