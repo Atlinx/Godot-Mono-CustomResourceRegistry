@@ -1,8 +1,20 @@
 using Godot;
+using GDC = Godot.Collections;
 using System;
 
 public partial class Test : Node
 {
+    [Export]
+    public Resource resourceOne;
+    [Export]
+    public Resource resourceTwo;
+    [Export]
+    public GDC.Array<Resource> resourceList;
+
+    [Export]
+    public NodePath labelNodePath;
+    private Label label;
+
     public override void _Ready()
     {
         // Weird Godot loading behaviour
