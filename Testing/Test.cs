@@ -1,17 +1,14 @@
-using System.Net.Mime;
-using System.Security.AccessControl;
 using Godot;
-using System;
-using System.Collections.Generic;
+using GDC = Godot.Collections;
 
 public partial class Test : Node
 {
     [Export]
     public Resource resourceOne;
     [Export]
-    public Resource resourceTwo;
+    public AlphaResource resourceTwo;
     [Export]
-    public List<Resource> resourceList;
+    public GDC.Array<Resource> resourceList;
 
     [Export]
     public NodePath labelNodePath;
@@ -25,7 +22,8 @@ public partial class Test : Node
         label.Text += "Resource One: " + resourceOne + "\n";
         label.Text += "Resource Two: " + resourceTwo + "\n";
         label.Text += "Resource List:\n";
-        foreach(Resource resource in resourceList) {
+        foreach (Resource resource in resourceList)
+        {
             label.Text += "\t" + resource + "\n";
         }
         // Weird Godot loading behaviour
@@ -38,7 +36,7 @@ public partial class Test : Node
         var betaSub = ResourceLoader.Load("res://Testing/AlphaNew.tres::1");
         GD.Print(betaSub);
         */
-        
+
         /*
         // Turns out Godot has native support for loading custom c# resources! Yayy!
         
