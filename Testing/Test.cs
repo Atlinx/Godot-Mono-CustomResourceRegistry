@@ -1,5 +1,8 @@
 using Godot;
 using GDC = Godot.Collections;
+using System;
+using System.Collections.Generic;
+using GDC = Godot.Collections;
 
 public partial class Test : Node
 {

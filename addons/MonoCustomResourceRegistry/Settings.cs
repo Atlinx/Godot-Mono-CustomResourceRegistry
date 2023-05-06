@@ -19,7 +19,7 @@ namespace MonoCustomResourceRegistry
         {
             get
             {
-                Array array = (Array?)GetSettings(nameof(ResourceScriptDirectories)) ?? new Array();
+                Array array = (Array)GetSettings(nameof(ResourceScriptDirectories)) ?? new Array();
                 return new(array.Select(v => v.AsString()).ToList());
             }
         }
