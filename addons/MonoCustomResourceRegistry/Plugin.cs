@@ -13,14 +13,20 @@ namespace MonoCustomResourceRegistry
 {
 #if TOOLS
     [Tool]
-    public partial class Plugin : EditorPlugin
+    public partial class Plugin : EditorPlugin, ISerializationListener
     {
-        // We're not going to hijack the Mono Build button since it actually takes time to build
-        // and we can't be sure how long that is. I guess we have to leave refreshing to the user for now.
-        // There isn't any automation we can do to fix that.
-        // private Button MonoBuildButton => GetNode<Button>("/root/EditorNode/@@580/@@581/@@589/@@590/Button");
         private readonly List<string> customTypes = new List<string>();
         private Button? refreshButton;
+
+        public void OnBeforeSerialize()
+        {
+            /* noop */
+        }
+
+        public void OnAfterDeserialize()
+        {
+            RefreshCustomClasses();
+        }
 
         public override void _EnterTree()
         {
